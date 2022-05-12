@@ -3,6 +3,12 @@
     width: calc(45% - 2rem);
     min-width: 17.5rem;
   }
+
+.user-item::marker {
+    color: #292929;
+    background: #292929;
+    visibility: hidden;
+}
   
   .user-item a {
     display: flex;
@@ -13,6 +19,7 @@
     padding: 1rem;
     color: white;
     background: #292929;
+    list-style: none;
   }
   
   .user-item a:hover,
