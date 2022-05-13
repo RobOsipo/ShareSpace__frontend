@@ -1,21 +1,25 @@
-import React from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
-import Users from './user/pages/Users'
-import NewPlace from './places/pages/NewPlace'
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Users from "./user/pages/Users";
+import NewPlace from "./places/pages/NewPlace";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 const App = () => {
   return (
-   
-      <Switch>
-        <Route exact path="/">
+    <>
+      <MainNavigation />
+      <main>
+        <Switch>
+          <Route exact path="/">
             <Users />
-        </Route>
-        <Route path="/places/new">
+          </Route>
+          <Route path="/places/new">
             <NewPlace />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
-    
-  )
-}
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </main>
+    </>
+  );
+};
 
-export default App
+export default App;
