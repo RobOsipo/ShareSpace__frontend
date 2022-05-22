@@ -6,6 +6,7 @@ import {
 } from "../../shared/util/validators";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
+import Card from "../../shared/components/UIElements/Card";
 import { useForm } from "../../shared/hooks/form-hook";
 
 import "./PlaceForm.css";
@@ -40,7 +41,7 @@ const DUMMY = [
 ];
 
 const UpdatePlace = (props) => {
-    const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const { placeId } = useParams();
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -60,20 +61,23 @@ const UpdatePlace = (props) => {
   const identifiedPlace = DUMMY.find((p) => p.id === placeId);
 
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifiedPlace.title,
-          isValid: true,
+    if (identifiedPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
-    setIsLoading(false)
+        true
+      );
+    }
+
+    setIsLoading(false);
   }, [setFormData, identifiedPlace]);
 
   const placeUpdateSubmitHandler = (e) => {
@@ -84,21 +88,21 @@ const UpdatePlace = (props) => {
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find place!</h2>
+        <Card>
+          <h2>Could not find place!</h2>
+        </Card>
       </div>
     );
   }
 
-
   if (isLoading) {
-      return (
-        <div className="center">
-          <h2>Loading.....</h2>
-        </div>
-      );
+    return (
+      <div className="center">
+        <h2>Loading.....</h2>
+      </div>
+    );
   }
   return (
-      
     <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
       <Input
         id="title"
@@ -125,7 +129,6 @@ const UpdatePlace = (props) => {
         UPDATE PLACE
       </Button>
     </form>
-      
   );
 };
 
