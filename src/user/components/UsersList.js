@@ -15,7 +15,8 @@ const UsersList = (props) => {
 
     return <ul className="user-list">
         {props.items.map((user, index) => {
-            return <UserItem key={user.id} id={user.id} image={user.image} name={user.name} placeCount={user.places} />
+           console.log(user)
+            return <UserItem key={user.id} id={user.id} image={user.image} name={user.name} placeCount={user.places.length} />
         })}
     </ul>
 }
